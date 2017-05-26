@@ -29,16 +29,6 @@
 
                             {!! BootForm::text('name', 'Nome', null, ['data-rule-required' => true, 'maxlength' => '150']) !!}
 
-                            @if (config('mcategories.image', true))
-                                {!! BootForm::file('image', 'Imagem', [
-                                        'data-allowed-file-extensions' => '["jpg", "png"]',
-                                        'data-initial-preview' => '["<img src=\"' . $category->image->url('crop') . '\" class=\"file-preview-image\">"]',
-                                        'data-initial-caption' => $category->image->originalFilename(),
-                                        'data-min-image-width' => config('mcategories.image.width', 640),
-                                        'data-min-image-height' => config('mcategories.image.height', 480),
-                                        'data-aspect-ratio' => number_format(config('mcategories.image.width', 640)/config('mcategories.image.height', 480), 2)
-                                    ]) !!}
-                            @endif
                         </div>
                     </div>
                 </div>

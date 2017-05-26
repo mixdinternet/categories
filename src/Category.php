@@ -21,7 +21,7 @@ class Category extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['status', 'name', 'description', 'image', 'type'];
+    protected $fillable = ['status', 'name', 'description', 'type'];
 
     public $translatable = ['name', 'description', 'slug'];
 
@@ -36,38 +36,13 @@ class Category extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->hasAttachedFile('image', [
-            'styles' => [
-                'crop' => function ($file, $imagine) {
-                    $image = $imagine->open($file->getRealPath());
-                    if (request()->input('crop.image.w', 0) > 0 && request()->input('crop.image.y', 0) > 0) {
-                        $image->crop(new \Imagine\Image\Point(request()->input('crop.image.x'), request()->input('crop.image.y'))
-                            , new \Imagine\Image\Box(request()->input('crop.image.w'), request()->input('crop.image.h')));
-                    }
-                    return $image;
-                }
-            ],
-            /*'default_url' => '/assets/img/avatar.png',*/
-        ]);
-
-        parent::__construct($attributes);
+       parent::__construct($attributes);
     }
 
     public static function boot()
     {
         parent::boot();
-
-        static::bootStapler();
     }
-
-    public function toArray()
-    {
-        return array_merge(parent::toArray(), [
-            'image' => $this->attachedFiles['image']->url()
-            , 'image_crop' => $this->attachedFiles['image']->url('crop')
-        ]);
-    }
-
 
     public function scopeSort($query, $fields = [])
     {
