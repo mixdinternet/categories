@@ -1,0 +1,23 @@
+{
+    "name": "mixdinternet/categories",
+    "description": "Pacote básico de categorias",
+    "keywords": ["laravel", "categorias", "categories"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Irineu Martins Junior",
+            "email": "irineu@mixd.com.br",
+            "homepage": "http://www.mixd.com.br/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mixdinternet\\Categories\\": "src/"
+        }
+    }
+}
